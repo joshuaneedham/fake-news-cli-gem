@@ -1,9 +1,9 @@
 class FakeNewsCliGem::Answer
-  attr_accessor :id, :title, :author, :publish_date, :text, :more_link, :sources
+  attr_accessor :id, :title, :author, :entry_date, :text, :more_link, :sources
 
   @@all = []
-  def initialize(name)
-    @name = name
+  def initialize(title)
+    @title = title
     @@all << self
   end
 

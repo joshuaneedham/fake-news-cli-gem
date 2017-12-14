@@ -11,4 +11,12 @@ Done - 1. Setup gem with initial files to get started including dependencies
 5. Demo the CLI
 
 
+<!--
+title = answer_links.css(".entry-title").text
+date = answer_links.css(".entry-date").text.strip
+text = answer_links.css(".text").text.gsub(/Click here to read more/,'').strip
+answer_link = answer_links.css(".more-link").attribute("href").value
+:id, :title, :author, :publish_date, :text, :more_link, :sources
+ -->
+
 

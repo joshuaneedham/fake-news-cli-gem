@@ -1,5 +1,7 @@
-require "fake_news_cli_gem/version"
+require 'nokogiri'
+require 'colorize'
 
-module FakeNewsCliGem
-  # Your code goes here...
-end
+require_relative "./fake_news_cli_gem/version"
+require_relative "./fake_news_cli_gem/article"
+require_relative "./fake_news_cli_gem/scraper"
+require_relative "./fake_news_cli_gem/cli"

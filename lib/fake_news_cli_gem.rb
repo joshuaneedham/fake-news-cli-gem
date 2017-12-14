@@ -1,5 +1,7 @@
 require 'nokogiri'
 require 'colorize'
+require 'open-uri'
+require 'pry'
 
 require_relative "./fake_news_cli_gem/version"
 require_relative "./fake_news_cli_gem/article"

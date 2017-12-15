@@ -1,4 +1,4 @@
-# FakeNewsCliGem
+# "Fake News" Cli Gem
 
 This gem was created as a project for Learn.co. It scrapes FactCheck.org/fake-news and creates objects for the 10 latest "Fake News" category articles.
 

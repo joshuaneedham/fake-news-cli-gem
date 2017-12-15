@@ -16,7 +16,7 @@ class FakeNewsCliGem::CLI
         if choice == "y"
           input = ""
           until [(1..10).map(&:to_s), "exit"].flatten.include? input do
-              puts "Please enter and ID number #{"between 1 and 10".bold} or #{"exit".red} to exit the program."
+              puts "Please enter an #{"article number".green} you would like to read, or #{"exit".red} to exit the program."
               input = gets.strip.downcase
             end
             if (1..10).map(&:to_s).include? input
@@ -39,20 +39,20 @@ class FakeNewsCliGem::CLI
         ############## CLI METHODS ###############
         # Returns Title and short description from the source
         def cli_source_info
-          puts "\n ***** #{@fake_news_articles.get_page_title} ***** ".blue.bold
-          puts "\n #{@fake_news_articles.get_site_description}"
+          puts "***** #{@fake_news_articles.get_page_title} ***** ".blue.bold
+          puts "#{@fake_news_articles.get_site_description}"
         end
 
         def welcome_message
           puts "Welcome to the FactChecker Fake News Scraper"
-          puts "\nBelow you will find several links factcheck.org \"fake news\" articles."
+          puts "\nBelow you will find several factcheck.org \"fake news\" articles."
         end
 
         def initial_list
           @questions.each do |a|
-            puts "----------------------------------------------"
-            puts ""
-            puts "Article: #{a.id}\n #{a.title}\n#{a.text}"
+            puts "#{"Article: #{a.id}".italic}".colorize(:color => :green)
+            puts "#{a.title}\n".colorize(:blue).underline
+            puts "#{a.text}".colorize(:color => :black, :background => :white)
             puts ""
           end
 
@@ -60,8 +60,8 @@ class FakeNewsCliGem::CLI
 
 
         def intro
-          cli_source_info
           welcome_message
+          cli_source_info
           initial_list
         end
 

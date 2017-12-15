@@ -22,7 +22,11 @@ Or install it yourself as:
 
 After you <code>bundle install</code> the gem you can simply run <code>bin/fake-news</code>.
 
-One ran the gem initially lists 10 teaser articles. You have a few options from this point which are clearly listed. If you find an article that you would like to read simple type <code>y</code> and then it requires and article number or ID. After you input the article you would like to read it is returned. After you have read the article you have the option of opening the webpage. If you choose not to read the webpage it returns to the initial options of "list"ing the article teasers or "exit"ing the CLI.
+Once ran the gem initially lists 10 teaser articles.
+
+You have a few options from this point which are clearly listed. If you find an article that you would like to read simple type "<code>y</code>" and then it requires and article number or ID. After you input the article you would like to read it is returned.
+
+After you have read the article you have the option of opening the webpage. If you choose not to read the webpage it returns to the initial options of "<code>list</code>"ing the article teasers or "<code>exit</code>"ing the CLI.
 
 ## Development
 

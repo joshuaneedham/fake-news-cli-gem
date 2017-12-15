@@ -10,10 +10,9 @@ class FakeNewsCliGem::Scraper
     fact_links = @doc.css(".post")
     id = 0
 
-    fact_links.collect do |answer|
-      id += 1
+    fact_links.collect.with_index(1) do |answer, index|
       a = FakeNewsCliGem::Answer.new(answer.css(".entry-title").text)
-      a.id
+      a.id = index
       a.title = answer.css(".entry-title").text.strip
       a.entry_date = answer.css(".entry-date").text.strip
       a.text = answer.css(".text").text.gsub(/Click here to read more/,'').strip

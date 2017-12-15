@@ -2,10 +2,11 @@ class FakeNewsCliGem::CLI
 
   def initialize
     @fake_news_articles = FakeNewsCliGem::Scraper.new
-    @answers = @fake_news_articles.search_results
+    @questions = @fake_news_articles.search_results
   end
 
   def call
+
     intro
     choice = ""
     until choice == "n" || choice == "exit" do
@@ -47,15 +48,27 @@ class FakeNewsCliGem::CLI
           puts "\nBelow you will find several links factcheck.org \"fake news\" articles."
         end
 
+        def initial_list
+          @questions.each do |a|
+            puts "----------------------------------------------"
+            puts ""
+            puts "Article: #{a.id}\n #{a.title}\n#{a.text}"
+            puts ""
+          end
+
+        end
+
+
         def intro
           cli_source_info
           welcome_message
+          initial_list
         end
 
         # Returns list of articles from the search page
         def list_all(answer_id)
           href = ""
-          @fake_news_articles.find {|a| href = a.more_link if a.id == answer_id}
+          @questions.find {|a| href = a.more_link if a.id == answer_id}
           system("open #{href}")
         end
 

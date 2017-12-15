@@ -1,8 +1,6 @@
 # FakeNewsCliGem
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fake_news_cli_gem`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem was created as a project for Learn.co. It scrapes FactCheck.org/fake-news and creates objects for the 10 latest "Fake News" category articles.
 
 ## Installation
 
@@ -22,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After you <code>bundle install</code> the gem you can simply run <code>bin/fake-news</code>.
+
+One ran the gem initially lists 10 teaser articles. You have a few options from this point which are clearly listed. If you find an article that you would like to read simple type <code>y</code> and then it requires and article number or ID. After you input the article you would like to read it is returned. After you have read the article you have the option of opening the webpage. If you choose not to read the webpage it returns to the initial options of "list"ing the article teasers or "exit"ing the CLI.
 
 ## Development
 

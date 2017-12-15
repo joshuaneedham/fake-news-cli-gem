@@ -36,59 +36,59 @@ class FakeNewsCliGem::CLI
 
 
 
-        ############## CLI METHODS ###############
-        # Returns Title and short description from the source
-        def cli_source_info
-          puts "***** #{@fake_news_articles.get_page_title} ***** ".blue.bold
-          puts "#{@fake_news_articles.get_site_description}"
-        end
+  ############## CLI METHODS ###############
+  # Returns Title and short description from the source
+  def cli_source_info
+    puts "***** #{@fake_news_articles.get_page_title} ***** ".blue.bold
+    puts "#{@fake_news_articles.get_site_description}"
+  end
 
-        def welcome_message
-          puts "Welcome to the FactChecker Fake News Scraper"
-          puts "\nBelow you will find several factcheck.org \"fake news\" articles."
-        end
+  def welcome_message
+    puts "Welcome to the FactChecker Fake News Scraper"
+    puts "\nBelow you will find several factcheck.org \"fake news\" articles."
+  end
 
-        def initial_list
-          @questions.each do |a|
-            puts "#{"Article: #{a.id}".italic}".colorize(:color => :green)
-            puts "#{a.title}\n".colorize(:blue).underline
-            puts "#{a.text}".colorize(:color => :black, :background => :white)
-            puts ""
-          end
+  def initial_list
+    @questions.each do |a|
+      puts "#{"Article: #{a.id}".italic}".colorize(:color => :green)
+      puts "#{a.title}\n".colorize(:blue).underline
+      puts "#{a.text}".colorize(:color => :black, :background => :white)
+      puts ""
+    end
 
-        end
-
-
-        def intro
-          welcome_message
-          cli_source_info
-          initial_list
-        end
-
-        # Returns list of articles from the search page
-        def list_all(answer_id)
-          href = ""
-          @questions.find {|a| href = a.more_link if a.id == answer_id}
-          system("open #{href}")
-        end
-
-        # Returns the full answer/article from the user selection
-        def info(answer_id)
-          @fake_news_articles.answers(answer_id)
-          input = ""
-          until ["y", "n"].include? input do
-              puts "Would you like to read the full article? #{"(y/n)".bold}"
-              input = gets.strip.downcase
-              list_all(answer_id) if input == "y"
-            end
-          end
-
-          def footer
-            puts "\n- Come Back Soon -"
-            puts "source: www.factcheck.org".light_black
-            puts "- Goodbye -"
-            puts ""
-          end
+  end
 
 
-        end
+  def intro
+    welcome_message
+    cli_source_info
+    initial_list
+  end
+
+  # Returns list of articles from the search page
+  def list_all(answer_id)
+    href = ""
+    @questions.find {|a| href = a.more_link if a.id == answer_id}
+    system("open #{href}")
+  end
+
+  # Returns the full answer/article from the user selection
+  def info(answer_id)
+    @fake_news_articles.answers(answer_id)
+    input = ""
+    until ["y", "n"].include? input do
+        puts "Would you like to read the full article? #{"(y/n)".bold}"
+        input = gets.strip.downcase
+        list_all(answer_id) if input == "y"
+      end
+    end
+
+    def footer
+      puts "\n- Come Back Soon -"
+      puts "source: www.factcheck.org".light_black
+      puts "- Goodbye -"
+      puts ""
+    end
+
+
+  end

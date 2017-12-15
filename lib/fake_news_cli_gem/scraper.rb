@@ -38,6 +38,7 @@ class FakeNewsCliGem::Scraper
     FakeNewsCliGem::Answer.all.find {|a| answer = a if a.id == answer_id}
 
     answer_page = Nokogiri::HTML(open(answer.more_link))
+
     puts "\n#{title = answer_page.css(".entry-title").text}".colorize(:color => :green).bold.underline
     puts "\nAuthor: #{author = answer_page.css(".entry-author").text.gsub(/By/, '').strip}".colorize(:color => :red)
     puts "\nPublish Date: #{publish_date = answer_page.css(".entry-date").text.gsub(/Posted on/, '').strip}".colorize(:color => :light_yellow)

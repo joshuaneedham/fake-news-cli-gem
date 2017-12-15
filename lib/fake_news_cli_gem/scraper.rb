@@ -22,58 +22,29 @@ class FakeNewsCliGem::Scraper
     end
   end
 
-  # Gives us a title and short description of the search page
+  # Gives us a title from the search page
   def get_page_title
     page_title = @doc.css(".content-part #page-title h2 span").text.strip
   end
-
+  #
+  # Gives us a short description from the search page
   def get_site_description
     site_description = @doc.css(".content-part #page-title .category-description").text.strip
   end
 
+  # Provides the answer/article linked via a search page result
   def answers(answer_id)
-    # answer = ""
+    answer = ""
 
-    # FakeNewsCliGem::answer.all.find {|a| answer = a if a.id == answer_id}
-    href = "http://www.factcheck.org/2017/12/fake-report-voter-fraud-alabama/"
-    answer_page = Nokogiri::HTML(open(href))
+    FakeNewsCliGem::Answer.all.find {|a| answer = a if a.id == answer_id}
 
-    puts "\n#{title = answer_page.css(".entry-title").text}.bold"
+    answer_page = Nokogiri::HTML(open(answer.more_link))
+    puts "\n#{title = answer_page.css(".entry-title").text}"
     puts "\n#{author = answer_page.css(".entry-author").text.gsub(/By/, '').strip}"
     puts "\n#{publish_date = answer_page.css(".entry-date").text.gsub(/Posted on/, '').strip}"
-    puts "\n#{text = answer_page.css(".entry .text").text.gsub(/Share the Facts
-2017-12-14 17:49:06 UTC
-
-
-FactCheck.org
-
-
-
-7
-1
-11
- FactCheck.org Rating:
-False
-
-“The FEC has announced that it may have to recommend invalidating more than 60K votes” in Alabama’s U.S. Senate race.
-
-
-
-Various websites
-–
-reaganwasright.com
-
-
-
-Wednesday, December 13, 2017
-2017-12-13
-
-
-
-Read More
-info
-
-/, '').strip}"
+    body = answer_page.css(".text p").collect do |p|
+      p.text
+    end[0..-4].each { |p| puts "\n#{p}" }
     puts ""
   end
 

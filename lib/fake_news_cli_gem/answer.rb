@@ -3,8 +3,13 @@ class FakeNewsCliGem::Answer
   # Class variable that stores all scraped data objects
   @@all = []
   # Initializes the answer object
-  def initialize(title)
+  def initialize(title, id, entry_date, text, more_link)
+    @id = id
     @title = title
+    @author = author
+    @entry_date = entry_date
+    @text = text
+    @more_link = more_link
     @@all << self
   end
 

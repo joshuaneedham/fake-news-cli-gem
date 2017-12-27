@@ -8,17 +8,18 @@ class FakeNewsCliGem::Scraper
   def search_results
     @doc = Nokogiri::HTML(open(@url))
     fact_links = @doc.css(".post")
-    id = 0
 
-    fact_links.collect.with_index(1) do |answer, index|
-      a = FakeNewsCliGem::Answer.new(answer.css(".entry-title").text)
-      a.id = index
-      a.title = answer.css(".entry-title").text.strip
-      a.entry_date = answer.css(".entry-date").text.strip
-      a.text = answer.css(".text").text.gsub(/Click here to read more/,'').strip
-      a.more_link = answer.css(".more-link").attribute("href").value
-      a
-    end
+    fact_links.each_with_index do |answer, index|
+
+        id = index + 1
+        title = answer.css(".entry-title").text.strip
+        entry_date = answer.css(".entry-date").text.strip
+        text = answer.css(".text").text.gsub(/Click here to read more/,'').strip
+        more_link = answer.css(".more-link").attribute("href").value
+
+        FakeNewsCliGem::Answer.new(title, id, entry_date, text, more_link)
+
+    end #-> [<object:e8484848 @title=>, <object>]
   end
 
   # Gives us a title from the search page

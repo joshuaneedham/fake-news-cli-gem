@@ -2,7 +2,8 @@ class FakeNewsCliGem::CLI
 
   def initialize
     @fake_news_articles = FakeNewsCliGem::Scraper.new
-    @questions = @fake_news_articles.search_results
+    @fake_news_articles.search_results
+    @questions = FakeNewsCliGem::Answer.all
   end
 
   def call
